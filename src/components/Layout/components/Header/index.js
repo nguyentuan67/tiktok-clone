@@ -11,7 +11,9 @@ import {
     faSignOut } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/';
 import 'tippy.js/dist/tippy.css'
+import { Link } from 'react-router-dom';
 
+import routesConfig from '~/config/routes'
 import Button from '~/components/Button';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
@@ -39,7 +41,7 @@ const MENU_ITEMS = [
                     type: 'language',
                     code: 'vi',
                     title: 'Tiếng Việt',
-                }
+                },
             ]
         }
     },
@@ -95,9 +97,9 @@ function Header() {
 
     return <header className={cx('wrapper')}>
         <div className={cx('inner')}>
-            <div className={cx('logo')}>
+            <Link to={routesConfig.home} className={cx('logo-link')}>
                 <img src={images.logo} alt="Tiktok"/>
-            </div>
+            </Link>
 
             <Search />
 
@@ -133,7 +135,8 @@ function Header() {
                 )} 
                 <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                     {currentUser ? (
-                        <Image className={cx('user-avatar')}
+                        <Image 
+                            className={cx('user-avatar')}
                             src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/8f65a2981d96d036c2890b7f7d0a3969~c5_100x100.jpeg?x-expires=1655197200&x-signature=v%2F3LSneEyEGEGQz9%2FH8Af32Ld2w%3D" 
                             alt="avatar" />
                     ) : (
